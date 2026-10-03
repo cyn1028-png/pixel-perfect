@@ -1,27 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import { Plane, BellRing, CalendarX2 } from "lucide-react";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Flight Price Notifier — 機票降價通知" },
-      {
-        name: "description",
-        content:
-          "設定航線與目標價，機票降價就通知你。Set a route and a target price — we email you when the fare drops.",
-      },
-      { property: "og:title", content: "Flight Price Notifier — 機票降價通知" },
-      {
-        property: "og:description",
-        content: "Set a route and a target price — we email you when the fare drops.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: Landing,
-});
+import { usePageMeta } from "@/lib/use-page-meta";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -77,7 +57,14 @@ const features = [
   },
 ];
 
-function Landing() {
+export function LandingPage() {
+  usePageMeta({
+    title: "Flight Price Notifier — 機票降價通知",
+    description:
+      "設定航線與目標價，機票降價就通知你。Set a route and a target price — we email you when the fare drops.",
+    ogDescription: "Set a route and a target price — we email you when the fare drops.",
+  });
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-20 border-b border-border/60 bg-background/80 backdrop-blur-xl">
@@ -86,7 +73,7 @@ function Landing() {
             Flight Price Notifier
           </span>
           <Link
-            to="/auth"
+            to="/sign-in"
             className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground shadow-glow transition-colors hover:bg-primary/90"
           >
             Sign in / 登入
@@ -113,7 +100,7 @@ function Landing() {
               </p>
               <div className="mt-10 flex justify-center">
                 <Link
-                  to="/auth"
+                  to="/sign-in"
                   className="rounded-full bg-primary px-7 py-3 text-base font-medium text-primary-foreground shadow-glow transition-transform hover:scale-[1.03]"
                 >
                   Sign in / 登入

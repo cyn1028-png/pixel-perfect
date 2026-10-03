@@ -1,28 +1,16 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { usePageMeta } from "@/lib/use-page-meta";
 
-export const Route = createFileRoute("/auth")({
-  ssr: false,
-  head: () => ({
-    meta: [
-      { title: "Sign in — Flight Price Notifier" },
-      {
-        name: "description",
-        content: "登入或註冊 Flight Price Notifier，開始追蹤機票價格。",
-      },
-      { property: "og:title", content: "Sign in — Flight Price Notifier" },
-      { property: "og:description", content: "Sign in to track flight prices from Taipei." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: AuthPage,
-});
-
-function AuthPage() {
+export function AuthPage({ mode }: { mode: "signin" | "signup" }) {
   const navigate = useNavigate();
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
+  usePageMeta({
+    title:
+      mode === "signin" ? "Sign in — Flight Price Notifier" : "Sign up — Flight Price Notifier",
+    description: "登入或註冊 Flight Price Notifier，開始追蹤機票價格。",
+    ogDescription: "Sign in to track flight prices from Taipei.",
+  });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -30,7 +18,7 @@ function AuthPage() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/app", replace: true });
+      if (data.session) navigate("/app", { replace: true });
     });
   }, [navigate]);
 
@@ -52,7 +40,7 @@ function AuthPage() {
       setError(error.message);
       return;
     }
-    if (data.session) navigate({ to: "/app", replace: true });
+    if (data.session) navigate("/app", { replace: true });
     else setError("請收信完成驗證後再登入。Check your email to confirm your account.");
   }
 
@@ -110,7 +98,7 @@ function AuthPage() {
         <button
           type="button"
           onClick={() => {
-            setMode(mode === "signin" ? "signup" : "signin");
+            navigate(mode === "signin" ? "/sign-up" : "/sign-in");
             setError(null);
           }}
           className="mt-5 w-full text-center text-sm text-muted-foreground hover:text-foreground"
