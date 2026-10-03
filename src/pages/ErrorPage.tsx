@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useNavigate, useRouteError } from "react-router";
-import { reportLovableError } from "@/lib/lovable-error-reporting";
 
 export function ErrorPage() {
   const error = useRouteError();
@@ -8,7 +7,6 @@ export function ErrorPage() {
 
   useEffect(() => {
     console.error(error);
-    reportLovableError(error, { boundary: "router_root_error_element" });
   }, [error]);
 
   return (

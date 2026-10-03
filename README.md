@@ -24,8 +24,12 @@ bun run build  # static output in dist/
 
 Needed at build time (locally in `.env`; on Vercel under Project → Settings → Environment Variables):
 
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_PUBLISHABLE_KEY`
+- `VITE_SUPABASE_URL` — `https://fhzklxkuqypuvagkvqds.supabase.co`
+- `VITE_SUPABASE_PUBLISHABLE_KEY` — the project's `sb_publishable_*` key (browser-safe, RLS-gated;
+  replaces the legacy "anon" key)
+
+Backend: the app's own Supabase project `fhzklxkuqypuvagkvqds` (Supabase dashboard → Project Settings → API Keys).
+See `.env.example` for the format.
 
 ## Deploying to Vercel
 
