@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import { Plane, BellRing, CalendarX2 } from "lucide-react";
 import { usePageMeta } from "@/lib/use-page-meta";
-import { Dachshund, LollipopTree, Medallion, Skyline, palettes } from "@/components/decor/Folk";
+import { Bird, Ground, Leaf, LeafTree, Reeds } from "@/components/decor/Autumn";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -37,11 +37,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
-const featureTone = [
-  { ring: "var(--gold)", fill: "var(--primary)" },
-  { ring: "var(--terracotta)", fill: "var(--teal)" },
-  { ring: "var(--dusty-blue)", fill: "var(--ink)" },
-];
+const featureTone = ["var(--primary)", "var(--mustard)", "var(--hair)"];
 
 const features = [
   {
@@ -73,91 +69,94 @@ export function LandingPage() {
   });
 
   return (
-    <div className="bg-polka min-h-screen text-foreground">
-      <header className="sticky top-0 z-20 border-b-2 border-ink bg-cream/85 backdrop-blur-md">
+    <div className="bg-paper min-h-screen text-foreground">
+      <header className="sticky top-0 z-20 bg-paper/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-          <span className="flex items-center gap-2 font-display text-base font-bold tracking-tight sm:text-lg">
-            <Medallion size={28} palette={palettes.sun} className="folk-spin" />
+          <span className="flex items-center gap-2 font-display text-base tracking-tight sm:text-lg">
+            <Leaf size={18} tone="ember" className="rotate-[-20deg]" />
             Flight Price Notifier
           </span>
-          <Link
-            to="/sign-in"
-            className="rounded-full border-2 border-ink bg-primary px-5 py-2 text-sm font-bold text-primary-foreground shadow-glow transition-all hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_var(--ink)] active:translate-y-0 active:shadow-none"
-          >
+          <Link to="/sign-in" className="btn-scarf px-5 py-2 text-sm font-bold">
             Sign in / 登入
           </Link>
         </div>
+        <div className="bg-scarf h-1.5" aria-hidden />
       </header>
 
       <main>
         <section className="relative overflow-hidden">
           <div className="pointer-events-none absolute inset-x-0 -top-40 h-[32rem] bg-hero-glow" />
-          <Medallion
-            size={110}
-            palette={palettes.sun}
-            spokes={26}
-            className="folk-spin pointer-events-none absolute right-[8%] top-10 hidden sm:block"
+          <Leaf
+            size={36}
+            tone="mustard"
+            className="leaf-drift pointer-events-none absolute left-[14%] top-14 hidden sm:block"
           />
-          <Medallion
-            size={48}
-            palette={palettes.coral}
-            className="pointer-events-none absolute left-[10%] top-16 hidden sm:block"
+          <Leaf
+            size={20}
+            tone="ember"
+            className="pointer-events-none absolute right-[22%] top-24 hidden rotate-45 sm:block"
           />
-          <LollipopTree
-            height={300}
-            palette={palettes.rose}
-            className="pointer-events-none absolute bottom-2 left-[-30px] z-10 hidden md:block lg:left-[4%]"
+          <Leaf
+            size={130}
+            tone="ochre"
+            className="leaf-drift pointer-events-none absolute right-[6%] top-16 hidden md:block"
           />
-          <LollipopTree
-            height={250}
-            palette={palettes.coral}
-            className="pointer-events-none absolute bottom-2 right-[-20px] z-10 hidden md:block lg:right-[5%]"
+          <LeafTree
+            height={280}
+            tone="ember"
+            className="pointer-events-none absolute bottom-8 left-[2%] z-10 hidden md:block lg:left-[8%]"
           />
-          <div className="relative mx-auto max-w-4xl px-6 pb-64 pt-20 text-center sm:pb-80 sm:pt-28">
+          <Bird
+            size={120}
+            className="pointer-events-none absolute bottom-8 left-[30%] z-10 md:left-[12%] lg:left-[19%]"
+          />
+          <Reeds
+            height={170}
+            className="pointer-events-none absolute bottom-8 right-[4%] z-10 lg:right-[10%]"
+          />
+          <Reeds
+            height={110}
+            flip
+            className="pointer-events-none absolute bottom-8 left-[1%] z-10 md:hidden"
+          />
+          <div className="relative mx-auto max-w-3xl px-6 pb-56 pt-20 text-center sm:pb-72 sm:pt-28">
             <Reveal>
-              <span className="inline-flex items-center rounded-full border-2 border-ink bg-cream px-4 py-1 text-xs font-bold tracking-wide">
+              <span className="inline-flex items-center rounded-full bg-mustard/30 px-4 py-1 text-sm font-bold text-hair">
                 台北出發 · 東京 / 首爾
               </span>
-              <h1 className="mt-6 bg-text-gradient bg-clip-text font-display text-5xl font-bold italic tracking-tight text-transparent sm:text-7xl">
+              <h1 className="mt-6 font-display text-5xl leading-[1.05] tracking-tight text-ink sm:text-7xl">
                 Flight Price Notifier
               </h1>
-              <div className="dotted-rule mx-auto mt-6 w-40" aria-hidden />
-              <p className="mt-6 text-xl font-bold sm:text-2xl">
+              <div className="stitch-rule mx-auto mt-7 w-[126px]" aria-hidden />
+              <p className="mt-7 font-display text-xl sm:text-2xl">
                 設定航線與目標價，機票降價就通知你
               </p>
               <p className="mt-3 text-base text-muted-foreground">
                 Set a route and a target price — we email you when the fare drops.
               </p>
               <div className="mt-10 flex justify-center">
-                <Link
-                  to="/sign-in"
-                  className="rounded-full border-2 border-ink bg-primary px-8 py-3 text-base font-bold text-primary-foreground shadow-glow transition-all hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_var(--ink)] active:translate-y-0 active:shadow-none"
-                >
+                <Link to="/sign-in" className="btn-scarf px-8 py-3 text-base font-bold">
                   Sign in / 登入
                 </Link>
               </div>
             </Reveal>
           </div>
-          <Skyline className="pointer-events-none absolute inset-x-0 bottom-0 h-56 w-full sm:h-64" />
-          <div className="absolute inset-x-0 bottom-0 h-2 bg-ink" aria-hidden />
+          <Ground className="pointer-events-none absolute inset-x-0 bottom-6 h-3 w-full" />
         </section>
 
-        <section className="mx-auto max-w-6xl px-6 py-24">
+        <section className="mx-auto max-w-6xl px-6 pb-24 pt-8">
           <div className="grid gap-8 md:grid-cols-3">
             {features.map((f, i) => (
               <Reveal key={f.en} delay={i * 120}>
-                <article className="folk-card h-full rounded-3xl p-7 transition-transform hover:-translate-y-1 hover:rotate-[-0.5deg]">
+                <article className="paper-card h-full p-7">
                   <span
-                    className="inline-flex h-14 w-14 items-center justify-center rounded-full border-2 border-dashed"
-                    style={{
-                      borderColor: featureTone[i]?.ring,
-                      backgroundColor: featureTone[i]?.fill,
-                    }}
+                    className="inline-flex h-14 w-14 items-center justify-center rounded-full"
+                    style={{ backgroundColor: featureTone[i] }}
                   >
                     <f.icon className="h-6 w-6 text-cream" aria-hidden />
                   </span>
-                  <h3 className="mt-5 text-xl font-bold">{f.title}</h3>
-                  <p className="text-sm font-semibold italic text-primary">{f.en}</p>
+                  <h3 className="mt-5 text-xl">{f.title}</h3>
+                  <p className="text-sm font-semibold text-primary">{f.en}</p>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
                 </article>
               </Reveal>
@@ -166,10 +165,13 @@ export function LandingPage() {
         </section>
       </main>
 
-      <footer className="relative border-t-2 border-ink bg-dress py-8 text-center text-sm font-semibold text-cream">
-        <div className="mx-auto flex max-w-6xl items-center justify-center gap-4 px-6">
-          <span className="rounded-full bg-ink px-3 py-1">© 2026 Flight Price Notifier</span>
-          <Dachshund size={70} className="hidden rounded-xl bg-cream p-1 sm:block" />
+      <footer className="relative">
+        <div className="bg-scarf h-2" aria-hidden />
+        <div className="bg-mustard py-8 text-center text-sm font-semibold text-ink">
+          <div className="mx-auto flex max-w-6xl items-center justify-center gap-4 px-6">
+            <Bird size={56} className="hidden sm:block" />
+            <span>© 2026 Flight Price Notifier</span>
+          </div>
         </div>
       </footer>
     </div>

@@ -19,29 +19,26 @@
  */
 
 @theme inline {
-  --font-sans: "Nunito", ui-sans-serif, system-ui, -apple-system, "Noto Sans TC", sans-serif;
-  --font-display: "Fraunces", "Noto Serif TC", ui-serif, Georgia, serif;
+  --font-sans: "Nunito", "LXGW WenKai TC", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Young Serif", "LXGW WenKai TC", ui-serif, Georgia, serif;
   --color-ink: var(--ink);
-  --color-blush: var(--blush);
+  --color-paper: var(--paper);
   --color-cream: var(--cream);
-  --color-gold: var(--gold);
-  --color-terracotta: var(--terracotta);
-  --color-dusty-blue: var(--dusty-blue);
-  --color-teal: var(--teal);
-  --color-bark: var(--bark);
-  --shadow-glow: 4px 4px 0 0 var(--ink);
-  --shadow-folk: 6px 6px 0 0 var(--terracotta);
+  --color-mustard: var(--mustard);
+  --color-ember: var(--ember);
+  --color-ochre: var(--ochre);
+  --color-cheek: var(--cheek);
+  --color-hair: var(--hair);
+  --color-twig: var(--twig);
+  --shadow-glow: 0 3px 0 0 var(--hair);
+  --shadow-paper:
+    0 2px 0 0 oklch(0.38 0.06 50 / 0.15), 0 18px 40px -22px oklch(0.38 0.06 50 / 0.45);
   --background-image-hero-glow: radial-gradient(
     55% 60% at 50% 0%,
-    oklch(0.86 0.12 75 / 0.55) 0%,
+    oklch(0.88 0.1 78 / 0.45) 0%,
     transparent 70%
   );
-  --background-image-text-gradient: linear-gradient(
-    180deg,
-    var(--ink) 0%,
-    var(--ink) 55%,
-    var(--primary) 100%
-  );
+  --background-image-text-gradient: linear-gradient(180deg, var(--ink) 0%, var(--ink) 100%);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -166,117 +163,152 @@
   }
 }
 
-/* Flight Price Notifier — folk-art "city stroll" theme
- * Blush polka-dot ground, ink-black type, red-handbag primary,
- * mustard-gold / terracotta / dusty-blue / teal medallion accents. */
+/* Flight Price Notifier — autumn storybook theme
+ * Warm parchment ground with paper grain, ink-brown type, rust-scarf primary,
+ * mustard-coat / ember-leaf / ochre accents, knitted stripes and coat-seam stitching. */
 :root {
-  --radius: 1rem;
-  --ink: oklch(0.2 0.012 30);
-  --blush: oklch(0.91 0.04 25);
-  --cream: oklch(0.975 0.018 75);
-  --gold: oklch(0.77 0.12 78);
-  --terracotta: oklch(0.68 0.13 38);
-  --dusty-blue: oklch(0.76 0.06 265);
-  --teal: oklch(0.55 0.07 195);
-  --bark: oklch(0.48 0.07 55);
+  --radius: 1.25rem;
+  --ink: oklch(0.24 0.02 50);
+  --paper: oklch(0.95 0.03 78);
+  --cream: oklch(0.98 0.015 80);
+  --mustard: oklch(0.77 0.14 75);
+  --ember: oklch(0.56 0.16 35);
+  --ochre: oklch(0.74 0.12 72);
+  --cheek: oklch(0.8 0.08 40);
+  --hair: oklch(0.38 0.06 50);
+  --twig: oklch(0.55 0.07 70);
 
-  --background: var(--blush);
+  --background: var(--paper);
   --foreground: var(--ink);
   --card: var(--cream);
   --card-foreground: var(--ink);
   --popover: var(--cream);
   --popover-foreground: var(--ink);
-  --primary: oklch(0.56 0.2 27);
-  --primary-foreground: oklch(0.99 0.01 75);
-  --secondary: oklch(0.87 0.06 30);
+  --primary: oklch(0.59 0.17 40);
+  --primary-foreground: oklch(0.98 0.015 80);
+  --secondary: oklch(0.9 0.05 75);
   --secondary-foreground: var(--ink);
-  --muted: oklch(0.88 0.04 30);
-  --muted-foreground: oklch(0.42 0.04 30);
-  --accent: oklch(0.88 0.08 78);
+  --muted: oklch(0.91 0.035 75);
+  --muted-foreground: oklch(0.45 0.04 55);
+  --accent: oklch(0.88 0.09 78);
   --accent-foreground: var(--ink);
-  --destructive: oklch(0.5 0.2 25);
-  --destructive-foreground: oklch(0.99 0.01 75);
-  --border: oklch(0.2 0.012 30 / 0.85);
-  --input: oklch(0.2 0.012 30 / 0.35);
-  --ring: oklch(0.56 0.2 27);
+  --destructive: oklch(0.5 0.18 30);
+  --destructive-foreground: oklch(0.98 0.015 80);
+  --border: oklch(0.38 0.06 50 / 0.3);
+  --input: oklch(0.38 0.06 50 / 0.3);
+  --ring: oklch(0.59 0.17 40);
 }
 
 @layer base {
   body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    background-color: var(--blush);
+    background-color: var(--paper);
   }
   h1,
   h2,
   h3 {
     font-family: var(--font-display);
+    font-weight: 400;
   }
 }
 
 @layer components {
-  /* white polka dots on blush, like the pavement in the illustration */
-  .bg-polka {
-    background-color: var(--blush);
-    background-image:
-      radial-gradient(circle, oklch(1 0 0 / 0.85) 2.2px, transparent 2.6px),
-      radial-gradient(circle, oklch(1 0 0 / 0.55) 1.6px, transparent 2px);
-    background-size:
-      34px 34px,
-      34px 34px;
-    background-position:
-      0 0,
-      17px 17px;
+  /* warm paper with a faint gouache grain */
+  .bg-paper {
+    background-color: var(--paper);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.22 0 0 0 0 0.12 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  /* black dress with gold/cream dots */
-  .bg-dress {
-    background-color: var(--ink);
-    background-image:
-      radial-gradient(circle, var(--gold) 3px, transparent 3.6px),
-      radial-gradient(circle, var(--cream) 2px, transparent 2.6px);
-    background-size:
-      22px 22px,
-      22px 22px;
-    background-position:
-      0 0,
-      11px 11px;
+  /* knitted rust scarf stripes */
+  .bg-scarf {
+    background-color: var(--primary);
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0 9px,
+      oklch(0.42 0.13 35 / 0.75) 9px 11px
+    );
   }
-  .folk-card {
+  /* mustard coat with a black-button placket down the middle */
+  .bg-coat {
+    background-color: var(--mustard);
+    background-image:
+      radial-gradient(circle, var(--ink) 5px, transparent 5.5px),
+      linear-gradient(
+        90deg,
+        transparent calc(50% - 1px),
+        var(--ink) calc(50% - 1px) calc(50% + 1px),
+        transparent calc(50% + 1px)
+      );
+    background-size:
+      100% 44px,
+      100% 100%;
+    background-position:
+      calc(50% + 14px) 12px,
+      0 0;
+    background-repeat: repeat-y, no-repeat;
+  }
+  .paper-card {
     background-color: var(--cream);
-    border: 2px solid var(--ink);
-    box-shadow: var(--shadow-folk);
+    border: 1.5px solid oklch(0.38 0.06 50 / 0.18);
+    box-shadow: var(--shadow-paper);
+    border-radius: 28px 22px 30px 24px;
   }
-  .dotted-rule {
-    background-image: radial-gradient(circle, var(--gold) 2px, transparent 2.5px);
-    background-size: 14px 6px;
+  /* coat-seam running stitch */
+  .stitch-rule {
+    height: 4px;
+    background-image: linear-gradient(90deg, var(--primary) 0 10px, transparent 10px 18px);
+    background-size: 18px 4px;
     background-repeat: repeat-x;
-    background-position: center;
-    height: 6px;
+    border-radius: 2px;
+  }
+  .btn-scarf {
+    border-radius: 9999px;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    box-shadow: inset 0 -3px 0 oklch(0.42 0.13 35 / 0.6);
+    transition:
+      transform 160ms ease,
+      background-color 160ms ease;
+  }
+  .btn-scarf:hover {
+    background-color: oklch(0.54 0.17 38);
+    transform: translateY(-1px);
+  }
+  .btn-scarf:active {
+    transform: translateY(1px);
+  }
+  :where(a, button, input):focus-visible {
+    outline: 2.5px solid var(--hair);
+    outline-offset: 3px;
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .folk-sway {
-    animation: folk-sway 7s ease-in-out infinite;
+  .leaf-sway {
+    animation: leaf-sway 6s ease-in-out infinite;
     transform-origin: 50% 100%;
   }
-  .folk-spin {
-    animation: folk-spin 60s linear infinite;
+  .leaf-drift {
+    animation: leaf-drift 9s ease-in-out infinite;
   }
 }
 
-@keyframes folk-sway {
+@keyframes leaf-sway {
   0%,
   100% {
-    transform: rotate(-1.5deg);
+    transform: rotate(-2.5deg);
   }
   50% {
-    transform: rotate(1.5deg);
+    transform: rotate(2.5deg);
   }
 }
 
-@keyframes folk-spin {
-  to {
-    transform: rotate(360deg);
+@keyframes leaf-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(28deg);
+  }
+  50% {
+    transform: translate(-10px, 14px) rotate(18deg);
   }
 }
