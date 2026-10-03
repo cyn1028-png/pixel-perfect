@@ -19,18 +19,28 @@
  */
 
 @theme inline {
-  --font-sans:
-    "Inter", ui-sans-serif, system-ui, -apple-system, "Noto Sans TC", sans-serif;
-  --shadow-glow: 0 10px 40px -12px oklch(0.58 0.24 295 / 0.6);
+  --font-sans: "Nunito", ui-sans-serif, system-ui, -apple-system, "Noto Sans TC", sans-serif;
+  --font-display: "Fraunces", "Noto Serif TC", ui-serif, Georgia, serif;
+  --color-ink: var(--ink);
+  --color-blush: var(--blush);
+  --color-cream: var(--cream);
+  --color-gold: var(--gold);
+  --color-terracotta: var(--terracotta);
+  --color-dusty-blue: var(--dusty-blue);
+  --color-teal: var(--teal);
+  --color-bark: var(--bark);
+  --shadow-glow: 4px 4px 0 0 var(--ink);
+  --shadow-folk: 6px 6px 0 0 var(--terracotta);
   --background-image-hero-glow: radial-gradient(
-    60% 60% at 50% 0%,
-    oklch(0.58 0.24 295 / 0.28) 0%,
+    55% 60% at 50% 0%,
+    oklch(0.86 0.12 75 / 0.55) 0%,
     transparent 70%
   );
   --background-image-text-gradient: linear-gradient(
     180deg,
-    oklch(0.98 0.01 290) 0%,
-    oklch(0.72 0.17 295) 100%
+    var(--ink) 0%,
+    var(--ink) 55%,
+    var(--primary) 100%
   );
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -156,33 +166,117 @@
   }
 }
 
-/* Flight Price Notifier — dark-only violet theme */
+/* Flight Price Notifier — folk-art "city stroll" theme
+ * Blush polka-dot ground, ink-black type, red-handbag primary,
+ * mustard-gold / terracotta / dusty-blue / teal medallion accents. */
 :root {
-  --radius: 0.75rem;
-  --background: oklch(0.16 0.015 290);
-  --foreground: oklch(0.97 0.005 290);
-  --card: oklch(0.21 0.02 292);
-  --card-foreground: oklch(0.97 0.005 290);
-  --popover: oklch(0.21 0.02 292);
-  --popover-foreground: oklch(0.97 0.005 290);
-  --primary: oklch(0.62 0.23 295);
-  --primary-foreground: oklch(0.99 0.005 290);
-  --secondary: oklch(0.26 0.025 292);
-  --secondary-foreground: oklch(0.97 0.005 290);
-  --muted: oklch(0.26 0.025 292);
-  --muted-foreground: oklch(0.72 0.02 290);
-  --accent: oklch(0.3 0.05 295);
-  --accent-foreground: oklch(0.97 0.005 290);
-  --destructive: oklch(0.66 0.21 20);
-  --destructive-foreground: oklch(0.99 0.005 290);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.62 0.23 295);
+  --radius: 1rem;
+  --ink: oklch(0.2 0.012 30);
+  --blush: oklch(0.91 0.04 25);
+  --cream: oklch(0.975 0.018 75);
+  --gold: oklch(0.77 0.12 78);
+  --terracotta: oklch(0.68 0.13 38);
+  --dusty-blue: oklch(0.76 0.06 265);
+  --teal: oklch(0.55 0.07 195);
+  --bark: oklch(0.48 0.07 55);
+
+  --background: var(--blush);
+  --foreground: var(--ink);
+  --card: var(--cream);
+  --card-foreground: var(--ink);
+  --popover: var(--cream);
+  --popover-foreground: var(--ink);
+  --primary: oklch(0.56 0.2 27);
+  --primary-foreground: oklch(0.99 0.01 75);
+  --secondary: oklch(0.87 0.06 30);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.88 0.04 30);
+  --muted-foreground: oklch(0.42 0.04 30);
+  --accent: oklch(0.88 0.08 78);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.5 0.2 25);
+  --destructive-foreground: oklch(0.99 0.01 75);
+  --border: oklch(0.2 0.012 30 / 0.85);
+  --input: oklch(0.2 0.012 30 / 0.35);
+  --ring: oklch(0.56 0.2 27);
 }
 
 @layer base {
   body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    background-color: var(--blush);
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  /* white polka dots on blush, like the pavement in the illustration */
+  .bg-polka {
+    background-color: var(--blush);
+    background-image:
+      radial-gradient(circle, oklch(1 0 0 / 0.85) 2.2px, transparent 2.6px),
+      radial-gradient(circle, oklch(1 0 0 / 0.55) 1.6px, transparent 2px);
+    background-size:
+      34px 34px,
+      34px 34px;
+    background-position:
+      0 0,
+      17px 17px;
+  }
+  /* black dress with gold/cream dots */
+  .bg-dress {
+    background-color: var(--ink);
+    background-image:
+      radial-gradient(circle, var(--gold) 3px, transparent 3.6px),
+      radial-gradient(circle, var(--cream) 2px, transparent 2.6px);
+    background-size:
+      22px 22px,
+      22px 22px;
+    background-position:
+      0 0,
+      11px 11px;
+  }
+  .folk-card {
+    background-color: var(--cream);
+    border: 2px solid var(--ink);
+    box-shadow: var(--shadow-folk);
+  }
+  .dotted-rule {
+    background-image: radial-gradient(circle, var(--gold) 2px, transparent 2.5px);
+    background-size: 14px 6px;
+    background-repeat: repeat-x;
+    background-position: center;
+    height: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .folk-sway {
+    animation: folk-sway 7s ease-in-out infinite;
+    transform-origin: 50% 100%;
+  }
+  .folk-spin {
+    animation: folk-spin 60s linear infinite;
+  }
+}
+
+@keyframes folk-sway {
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+
+@keyframes folk-spin {
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -10,8 +10,8 @@ export function ErrorPage() {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
+    <div className="flex min-h-screen items-center justify-center bg-polka px-4">
+      <div className="folk-card max-w-md rounded-3xl px-8 py-10 text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
           This page didn't load
         </h1>
@@ -21,13 +21,13 @@ export function ErrorPage() {
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => navigate(0)}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-full border-2 border-ink bg-primary px-5 py-2 text-sm font-bold text-primary-foreground shadow-glow transition-all hover:-translate-y-0.5"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex items-center justify-center rounded-md border border-input bg-polka px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
             Go home
           </a>
